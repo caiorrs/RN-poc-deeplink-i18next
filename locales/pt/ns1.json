@@ -1,0 +1,8 @@
+{
+  "screens": {
+    "home": {
+      "title": "Inicio",
+      "description": "Descrição"
+    }
+  }
+}
