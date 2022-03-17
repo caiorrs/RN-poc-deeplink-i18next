@@ -5,13 +5,11 @@ import {
   useRoute,
 } from '@react-navigation/native';
 
-// import RNLocalize from 'react-native-localize'
+import RNLocalize from 'react-native-localize'
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-// import { initReactI18next, useTranslation } from 'react-i18next';
-
-// import i18next from 'i18next';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 const en_us = {
   translation: {
@@ -63,8 +61,7 @@ const resources = {
 type TranslationKey = keyof typeof fallback.translation
 
 const translate = (stringKey: TranslationKey) => {
-  return ""
-  // return i18next.t(stringKey)
+  return i18next.t(stringKey)
 }
 
 const getAppLocale = () => {
@@ -80,29 +77,30 @@ const getLanguage = () => {
 }
 
 const getDeviceLocale = () => {
-  return ""
+  return {
+    countryCode: "BR",
+    languageCode: 'pt'
+  }
   // return RNLocalize.getLocales()[0]
 }
 
 const getDefinedLanguage = () => {
   const locale = getAppLocale()
-  console.warn({locale})
   if (resources.hasOwnProperty(locale)){
     return locale
   }
 
   const language = getLanguage()
-  console.warn({language})
   return language
 }
 
-// i18next.use(initReactI18next).init({
-//   compatibilityJSON: 'v3',
-//   fallbackLng: 'en',
-//   debug: false,
-//   resources,
-//   lng: getDefinedLanguage()
-// });
+i18next.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
+  fallbackLng: 'en',
+  debug: false,
+  resources,
+  lng: getDefinedLanguage()
+});
 
 const linking = {
   prefixes: ['deeplinking://', 'https://deeplinking.com'],
@@ -128,7 +126,7 @@ const Home = () => {
       <Text style={styles.text}>{translate('hello')}</Text>
       <TouchableOpacity
         onPress={() =>{
-          // i18n.changeLanguage(i18n.language === 'sv' ? 'en' : 'sv')
+          i18next.changeLanguage(i18next.language === 'sv' ? 'en' : 'sv')
         }
         }>
         <Text>Change</Text>
