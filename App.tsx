@@ -4,12 +4,14 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import { initReactI18next, useTranslation } from 'react-i18next';
 
-import RNLocalize from 'react-native-localize'
+// import RNLocalize from 'react-native-localize'
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import i18next from 'i18next';
+
+// import { initReactI18next, useTranslation } from 'react-i18next';
+
+// import i18next from 'i18next';
 
 const en_us = {
   translation: {
@@ -61,7 +63,8 @@ const resources = {
 type TranslationKey = keyof typeof fallback.translation
 
 const translate = (stringKey: TranslationKey) => {
-  return i18next.t(stringKey)
+  return ""
+  // return i18next.t(stringKey)
 }
 
 const getAppLocale = () => {
@@ -77,7 +80,8 @@ const getLanguage = () => {
 }
 
 const getDeviceLocale = () => {
-  return RNLocalize.getLocales()[0]
+  return ""
+  // return RNLocalize.getLocales()[0]
 }
 
 const getDefinedLanguage = () => {
@@ -92,13 +96,13 @@ const getDefinedLanguage = () => {
   return language
 }
 
-i18next.use(initReactI18next).init({
-  compatibilityJSON: 'v3',
-  fallbackLng: 'en',
-  debug: false,
-  resources,
-  lng: getDefinedLanguage()
-});
+// i18next.use(initReactI18next).init({
+//   compatibilityJSON: 'v3',
+//   fallbackLng: 'en',
+//   debug: false,
+//   resources,
+//   lng: getDefinedLanguage()
+// });
 
 const linking = {
   prefixes: ['deeplinking://', 'https://deeplinking.com'],
@@ -119,15 +123,15 @@ const Stack = createNativeStackNavigator();
 
 const Home = () => {
   const navigation = useNavigation();
-  const {t, i18n} = useTranslation();
   return (
     <View style={styles.center}>
       <Text style={styles.text}>{translate('hello')}</Text>
       <TouchableOpacity
-        onPress={() =>
-          i18n.changeLanguage(i18n.language === 'sv' ? 'en' : 'sv')
+        onPress={() =>{
+          // i18n.changeLanguage(i18n.language === 'sv' ? 'en' : 'sv')
+        }
         }>
-        <Text>{translate('change')}</Text>
+        <Text>Change</Text>
       </TouchableOpacity>
       <Button
         title="Details"
@@ -145,7 +149,7 @@ const Details = () => {
   const {params} = route;
   return (
     <View style={styles.center}>
-      <Text style={styles.text}>{ translate("details")}</Text>
+      <Text style={styles.text}>Detalhes</Text>
       <Text style={styles.text}>{params.text}</Text>
       <Button title="Go Back" onPress={() => navigation.goBack()} />
     </View>
