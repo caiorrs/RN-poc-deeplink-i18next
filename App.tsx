@@ -1,3 +1,5 @@
+import * as RNLocalize from 'react-native-localize'
+
 import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
   NavigationContainer,
@@ -5,7 +7,6 @@ import {
   useRoute,
 } from '@react-navigation/native';
 
-import RNLocalize from 'react-native-localize'
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import i18next from 'i18next';
@@ -77,11 +78,11 @@ const getLanguage = () => {
 }
 
 const getDeviceLocale = () => {
-  return {
-    countryCode: "BR",
-    languageCode: 'pt'
-  }
-  // return RNLocalize.getLocales()[0]
+  // return {
+  //   countryCode: "BR",
+  //   languageCode: 'pt'
+  // }
+  return RNLocalize.getLocales()[0]
 }
 
 const getDefinedLanguage = () => {
